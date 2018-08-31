@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <title>ProjRails</title>
   </head>
 
   <body>
-    <h1>HERE</h1>
     <%= yield %>
   </body>
 </html>
