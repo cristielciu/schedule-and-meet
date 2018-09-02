@@ -25,6 +25,24 @@ class AppointmentsController < ApplicationController
       end
     end
   end
+
+  def edit
+    @appointment = Appointment.where(id: params[:appointment_id]).first
+    if @appointment.blank?
+      redirect_to root_path
+    end
+  end
+
+  def update
+    appointment = Appointment.find(params[:appointment][:id])
+    
+    if appointment.update(appointment_params)
+      flash[:success] = 'Appointment updated'
+      redirect_to root_path
+    else
+      flash[:error] = 'error'
+    end
+  end
   private
   
   def appointment_params

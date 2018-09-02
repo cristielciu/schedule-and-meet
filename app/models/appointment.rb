@@ -20,4 +20,8 @@ class Appointment < ApplicationRecord
   def answer_for_user(user)
     answers.for_user(user).first
   end
+
+  def attempting
+    answers.attempting.count + answers.attempting.sum(&:guests)
+  end
 end
