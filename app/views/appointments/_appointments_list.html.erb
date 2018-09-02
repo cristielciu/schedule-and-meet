@@ -1,0 +1,50 @@
+<table>
+  <% appointments.each do |appointment| %>
+
+    <tr>
+      <td>Name:</td>
+      <td><%= appointment.name %></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><%= appointment.description %></td>
+    </tr>
+    <tr>
+      <td>Starts at:</td>
+      <td><%= appointment.starts_at.strftime("%d-%m-%y %H:%M") %></td>
+    </tr>
+    <tr>
+      <td>LINK:</td>
+      <td style="width: 100%;">
+        <input value="<%= appointment.external_url %>" disabled=true style="width: 100%;">
+      </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+  <% end %>
+</table>

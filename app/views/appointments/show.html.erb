@@ -1,0 +1,50 @@
+<% if @appointment %>
+  <div>
+    <span>Name:</span>
+    <span><%= @appointment.name %></span>
+  </div>
+  <div>
+    <span>Description:</span>
+    <span><%= @appointment.description %></span>
+  </div>
+  <div>
+    <span>Starts at:</span>
+    <span><%= @appointment.starts_at.strftime("%d-%m-%y %H:%M") %></span>
+  </div>
+
+  <% if @answer.id %>
+    <br>
+    <h1>Update answer</h1>
+    <br>
+  <% end %>
+
+  <%= form_for @answer, url: { action: @answer.id ? 'update' : 'create', controller: "answers" }, validate: true do |f| %>
+    <div>
+      <%= f.label "Going?" %>
+      <br>
+      <%= f.label "yes:" %>
+      <%= f.radio_button :attempting, true, :checked => true %>
+
+      <%= f.label "no:" %> 
+      <%= f.radio_button :attempting, false %>
+    </div>
+
+    <div>
+      <%= f.label :user_name %>
+      <%= f.text_field :user_name %>
+    </div>
+
+    <div>
+      <%= f.label :guests %>
+      <%= f.select :guests, [0, 1, 2, 3, 4, 5] %>
+    </div>
+
+    <%= f.hidden_field :appointment_id %>
+    <%= f.hidden_field :id %>
+
+    <%= f.submit @answer.id ? 'Update' : 'Create' %>
+  <% end %>
+<% else %>
+  <div class='alert alert-danger'>Appointment doesn't exist</div>
+  <%= link_to 'Go back', root_path %>
+<% end %>

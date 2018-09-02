@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_181833) do
+ActiveRecord::Schema.define(version: 2018_09_02_104707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.boolean "attempting", default: true
+    t.string "user_name", default: ""
+    t.integer "guests", default: 0
+    t.string "user_ip", default: ""
+    t.bigint "appointment_id"
+    t.index ["appointment_id"], name: "index_answers_on_appointment_id"
+    t.index ["user_ip", "appointment_id"], name: "index_answers_on_user_ip_and_appointment_id", unique: true
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "starts_at"
+    t.bigint "creator_id"
+    t.string "url_token"
+    t.index ["creator_id"], name: "index_appointments_on_creator_id"
+    t.index ["url_token"], name: "index_appointments_on_url_token", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,4 +44,5 @@ ActiveRecord::Schema.define(version: 2018_08_29_181833) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "appointments", "users", column: "creator_id"
 end

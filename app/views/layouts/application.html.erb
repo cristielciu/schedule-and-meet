@@ -7,6 +7,15 @@
   </head>
 
   <body>
+  <% flash.each do |key, value| %>
+    <% if key == 'success' %>
+      <%= content_tag :div, value, class: "alert alert-success" %>
+    <% elsif key == 'error' %>
+      <%= content_tag :div, value, class: "alert alert-danger" %>
+    <% else %>
+      <%= content_tag :div, value, class: "alert alert-info" %>
+    <% end %>
+  <% end %>
     <%= yield %>
   </body>
 </html>
