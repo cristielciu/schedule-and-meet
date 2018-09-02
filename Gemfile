@@ -12,6 +12,10 @@ gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
+group :production do
+  gem 'uglifier', '~> 2.7', '>= 2.7.2'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
