@@ -20,10 +20,12 @@
       </td>
     </tr>
     <tr>
-      <td> </td>
+      <td>Attempting</td>
+      <td><%= appointment.attempting %> out of <%= appointment.answers.count %> answer(s)</td>
     </tr>
     <tr>
-      <td> </td>
+      <td></td>
+      <td><%= link_to 'Edit appointment', edit_appointment_path(appointment_id: appointment) %></td>
     </tr>
     <tr>
       <td> </td>
