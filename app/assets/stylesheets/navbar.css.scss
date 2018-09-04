@@ -1,8 +1,23 @@
 .navbar {
   z-index: 999;
-  background-color: #f7f7f7;
-  
+  background-color: #404b69;
+  color: #dbedf3;
+
+  .navbar-light .navbar-brand, .nav-link {
+    color: #dbedf3;
+  }
+
   .navbar-nav {
     margin-left: auto;
+  }
+
+  .navbar-toggler {
+    background-color: #dbedf3;
+  }
+
+  &.navbar-light {
+    .navbar-brand, .navbar-nav .nav-link {
+      color: #dbedf3;
+    }
   }
 }

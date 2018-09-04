@@ -1,18 +1,46 @@
 .hero {
-  height: 100vh;
+  height: 90vh;
   padding: 5%;
+  padding-bottom: 0;
 
   &::before {
     content : "";
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
-    background: url(/assets/home/hero.jpg);
+    background: linear-gradient(rgba(219, 237, 243, 0.7), rgba(219, 237, 243, 1)), image-url('home/hero.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 100%;
-    opacity : 0.2;
+    opacity : 0.4;
+    z-index: -1;
+  }
+}
+
+
+.flash-message {
+  float: right;
+  max-width: 50%;
+  position: relative;
+  top: 25px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px 0 rgba(52,52,51,0.12);
+  padding: 15px;
+  margin-right: 24px;
+  border-top: 4px solid #00818a;
+  overflow: auto;
+}
+
+.btn {
+  background-color: #404b69;
+  color: #dbedf3;
+
+  &:hover {
+    background-color: #707b99;
+    color: #ddeff5;
   }
 }
