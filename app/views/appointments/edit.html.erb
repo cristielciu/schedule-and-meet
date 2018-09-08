@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-group">
-      <%= select_datetime Time.now, { prefix: :appointment , order: %i[day month year hour minute], minute_step: 15 }, class: 'btn btn-dark dropdown-toggle mt-2' %>
+      <%= select_datetime @appointment.starts_at, { prefix: :appointment , order: %i[day month year hour minute], minute_step: 15 }, class: 'btn btn-dark dropdown-toggle mt-2' %>
       <p class='error text-danger'><%= show_errors(@appointment, :starts_at) %></p>
     </div>
 
