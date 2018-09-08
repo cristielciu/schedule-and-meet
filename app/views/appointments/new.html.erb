@@ -1,19 +1,23 @@
-<h1>New appointment</h1>
-<%= form_for @appointment, url: { action: 'create' }, validate: true do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+<div class="col-sm-6 offset-sm-3 col-lg-4 offset-lg-4">
+  <h1>New appointment</h1>
 
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+  <%= form_for @appointment, url: { action: 'create' }, validate: true do |f| %>
+    <div class="form-group form-group-inline">
+      <%= f.text_field :name, placeholder: 'Appointment name', class: 'form-control' %>
+       <p class='error text-danger'><%= show_errors(@appointment, :name) %></p>
+    </div>
 
-  <div>
-    <%= f.label :starts_at %>
-    <%= select_datetime Time.now, prefix: :appointment , order: %i[day month year hour minute], minute_step: 15 %>
-  </div>
+    <div class="form-group">
+      <%= f.text_area :description, placeholder: 'Descriprion', class: 'form-control' %>
+      <p class='error text-danger'><%= show_errors(@appointment, :description) %></p>
+    </div>
 
-  <%= f.submit 'Create' %>
-<% end %>
+    <div class="form-group">
+      <%= select_datetime Time.now, { prefix: :appointment , order: %i[day month year hour minute], minute_step: 15 }, class: 'btn btn-dark dropdown-toggle mt-2' %>
+      <p class='error text-danger'><%= show_errors(@appointment, :starts_at) %></p>
+    </div>
+
+
+    <%= f.submit 'Create', class: 'btn btn-default' %>
+  <% end %>
+</div>

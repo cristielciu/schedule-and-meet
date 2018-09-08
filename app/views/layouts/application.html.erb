@@ -3,19 +3,44 @@
   <head>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProjRails</title>
   </head>
 
   <body>
-  <% flash.each do |key, value| %>
-    <% if key == 'success' %>
-      <%= content_tag :div, value, class: "alert alert-success" %>
-    <% elsif key == 'error' %>
-      <%= content_tag :div, value, class: "alert alert-danger" %>
-    <% else %>
-      <%= content_tag :div, value, class: "alert alert-info" %>
+    <nav class="navbar navbar-expand-sm navbar-light">
+      <div class='container'>
+        <a class="navbar-brand" href="/">ScheduleAndMeetApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <% if user_signed_in? %>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
+              <%= link_to 'Schedule', new_appointment_path, class: 'btn btn-default btn-schedule' %>
+            <% else %>
+              <%= link_to 'Login', new_user_session_path, class: "nav-item nav-link active" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <% flash.each do |key, value| %>
+      <% if key == 'success' %>
+        <%= content_tag :div, value, class: "flash-message alert alert-success" %>
+      <% elsif key == 'error' %>
+        <%= content_tag :div, value, class: "flash-message alert alert-danger" %>
+      <% else %>
+        <%= content_tag :div, value, class: "flash-message alert alert-info" %>
+      <% end %>
     <% end %>
-  <% end %>
-    <%= yield %>
+
+    <div class='hero'>
+      <%= yield %>
+    </div>
   </body>
 </html>

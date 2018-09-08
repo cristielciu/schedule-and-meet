@@ -1,52 +1,16 @@
-<table>
-  <% appointments.each do |appointment| %>
-
-    <tr>
-      <td>Name:</td>
-      <td><%= appointment.name %></td>
-    </tr>
-    <tr>
-      <td>Description:</td>
-      <td><%= appointment.description %></td>
-    </tr>
-    <tr>
-      <td>Starts at:</td>
-      <td><%= appointment.starts_at.strftime("%d-%m-%y %H:%M") %></td>
-    </tr>
-    <tr>
-      <td>LINK:</td>
-      <td style="width: 100%;">
-        <input value="<%= appointment.external_url %>" disabled=true style="width: 100%;">
-      </td>
-    </tr>
-    <tr>
-      <td>Attempting</td>
-      <td><%= appointment.attempting %> out of <%= appointment.answers.count %> answer(s)</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><%= link_to 'Edit appointment', edit_appointment_path(appointment_id: appointment) %></td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-    </tr>
-  <% end %>
-</table>
+<% appointments.each do |appointment| %>
+  <div class="card col-sm-10 offset-sm-1">
+    <div class="card-body">
+      <h3><%= appointment.name %></h3>
+      <p><%= appointment.description %></p>  
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= appointment.starts_at.strftime("%d-%m-%y %H:%M") %></li>
+      <li class="list-group-item"><input value="<%= appointment.external_url %>" disabled=true class='col-12'></li>
+      <li class="list-group-item"><strong>Attempting: <%= appointment.attempting %></strong> out of <strong><%= appointment.answers.count %></strong> answer(s)</li>
+    </ul>
+    <div class="card-body">
+      <%= link_to 'Edit appointment', edit_appointment_path(appointment_id: appointment), class: 'btn btn-default btn-edit' %>
+    </div>
+  </div>
+<% end %>

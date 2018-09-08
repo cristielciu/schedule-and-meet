@@ -1,0 +1,22 @@
+#login {
+  height: 100vh;
+  background-color: #dbedf3;
+}
+
+#login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #404b69;
+  // background-color: rgba(0, 129, 138, 0.2);
+  background-color: #eaf0f2;
+
+  h3, label {
+    color: #404b69;
+  }
+
+  .btn {
+    background-color: #404b69;
+    color: #dbedf3;
+  }
+}

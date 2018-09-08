@@ -1,49 +1,49 @@
 <% if @appointment %>
-  <div>
-    <span>Name:</span>
-    <span><%= @appointment.name %></span>
-  </div>
-  <div>
-    <span>Description:</span>
-    <span><%= @appointment.description %></span>
-  </div>
-  <div>
-    <span>Starts at:</span>
-    <span><%= @appointment.starts_at.strftime("%d-%m-%y %H:%M") %></span>
+  <div class="card col-sm-6 offset-sm-3 col-lg-4 offset-lg-4">
+    <div class="card-body">
+      <h3><%= @appointment.name %></h3>
+      <p><%= @appointment.description %></p>  
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= @appointment.starts_at.strftime("%d-%m-%y %H:%M") %></li>
+    </ul>
   </div>
 
-  <% if @answer.id %>
-    <br>
-    <h1>Update answer</h1>
-    <br>
-  <% end %>
 
-  <%= form_for @answer, url: { action: @answer.id ? 'update' : 'create', controller: "answers" }, validate: true do |f| %>
-    <div>
-      <%= f.label "Going?" %>
-      <br>
-      <%= f.label "yes:" %>
-      <%= f.radio_button :attempting, true, :checked => true %>
+  <div class="col-sm-6 offset-sm-3 col-lg-4 offset-lg-4">
+    <% if @answer.id %>
+      <h3 class='title'>Update answer</h3>
+    <% end %>
 
-      <%= f.label "no:" %> 
-      <%= f.radio_button :attempting, false %>
-    </div>
+    <%= form_for @answer, url: { action: @answer.id ? 'update' : 'create', controller: "answers" }, validate: true do |f| %>
+      <h5> Going?
+        <div class="form-check form-check-inline ml-3">
+          <%= f.radio_button :attempting, true, :checked => true, class:"form-check-input", id:"inlineRadio1"%>
+          <label class="form-check-label" for="inlineRadio1">Yes</label>
+        </div>
+        
+        <div class="form-check form-check-inline ml-3">
+          <%= f.radio_button :attempting, false, class: "form-check-input", id:"inlineRadio2"  %>
+          <label class="form-check-label" for="inlineRadio2">No</label>
+        </div>
+      </h5>
 
-    <div>
-      <%= f.label :user_name %>
-      <%= f.text_field :user_name %>
-    </div>
+      <div class="form-group form-group-inline">
+        <%= f.text_field :user_name, class: 'form-control', placeholder: 'User name', validate: true %>
+        <p class='error text-danger'><%= show_errors(@answer, :user_name) %></p>
+      </div>
 
-    <div>
-      <%= f.label :guests %>
-      <%= f.select :guests, [0, 1, 2, 3, 4, 5] %>
-    </div>
+      <div class="form-group">
+        <%= f.label :guests %>
+        <%= f.select :guests, [0, 1, 2, 3, 4, 5], {}, class: 'btn btn-dark dropdown-toggle mt-2' %>
+      </div>
 
-    <%= f.hidden_field :appointment_id %>
-    <%= f.hidden_field :id %>
+      <%= f.hidden_field :appointment_id %>
+      <%= f.hidden_field :id %>
 
-    <%= f.submit @answer.id ? 'Update' : 'Create' %>
-  <% end %>
+      <%= f.submit @answer.id ? 'Update' : 'Create', class: 'btn btn-default' %>
+    <% end %>
+  </div>
 <% else %>
   <div class='alert alert-danger'>Appointment doesn't exist</div>
   <%= link_to 'Go back', root_path %>
