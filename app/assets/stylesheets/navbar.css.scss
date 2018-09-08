@@ -9,6 +9,11 @@
 
   .navbar-nav {
     margin-left: auto;
+
+    a {
+      margin-left: 30px;
+    }
+  
   }
 
   .navbar-toggler {
@@ -19,5 +24,15 @@
     .navbar-brand, .navbar-nav .nav-link {
       color: #dbedf3;
     }
+  }
+
+  .btn-schedule {
+    background-color: #dbedf3;
+    color: #283149;
+
+    &:hover {
+      background-color: #effaff;
+      color: #283149;
+    } 
   }
 }

@@ -1,7 +1,7 @@
 .hero {
-  height: 90vh;
-  padding: 5%;
-  padding-bottom: 0;
+  min-height: 90vh;
+  padding-top: 20px;
+  position: relative;
 
   &::before {
     content : "";
@@ -35,7 +35,7 @@
   overflow: auto;
 }
 
-.btn {
+.btn-default {
   background-color: #404b69;
   color: #dbedf3;
 
@@ -43,4 +43,14 @@
     background-color: #707b99;
     color: #ddeff5;
   }
+}
+
+.card {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-top: 30px;
+  text-align: center; 
 }

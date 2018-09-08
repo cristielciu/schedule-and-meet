@@ -20,6 +20,7 @@
             <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             <% if user_signed_in? %>
               <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
+              <%= link_to 'Schedule', new_appointment_path, class: 'btn btn-default btn-schedule' %>
             <% else %>
               <%= link_to 'Login', new_user_session_path, class: "nav-item nav-link active" %>
             <% end %>
@@ -38,6 +39,8 @@
       <% end %>
     <% end %>
 
-    <%= yield %>
+    <div class='hero'>
+      <%= yield %>
+    </div>
   </body>
 </html>

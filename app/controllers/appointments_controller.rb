@@ -4,13 +4,13 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    appointment = Appointment.new(appointment_params)
+    @appointment = Appointment.new(appointment_params)
     
-    if appointment.save
+    if @appointment.save
       flash[:success] = 'Appointment created'
       redirect_to root_path
     else
-      flash[:error] = 'error'
+      render 'new'
     end
   end
   

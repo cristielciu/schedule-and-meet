@@ -1,12 +1,13 @@
 class AnswersController < ApplicationController
   def create
-    answer = Answer.new(answer_params)
+    @answer = Answer.new(answer_params)
 
-    if answer.save
+    if @answer.save
       flash[:success] = 'Answer submitted'
       redirect_to root_path
     else
-      flash[:error] = 'Already voted'
+      flash[:error] = 'Name required'
+      redirect_to appointment_path(key: appointment_key)
     end
   end
 
@@ -17,7 +18,8 @@ class AnswersController < ApplicationController
       flash[:success] = 'Answer updated'
       redirect_to root_path
     else
-      flash[:error] = 'Already voted'
+      flash[:error] = 'Name required'
+      redirect_to appointment_path(key: appointment_key)
     end
   end
 
@@ -28,5 +30,9 @@ class AnswersController < ApplicationController
     attrs[:user_ip] = request.remote_ip
 
     attrs
+  end
+
+  def appointment_key
+    Appointment.find(params[:answer][:appointment_id]).try(&:url_token  )
   end
 end
