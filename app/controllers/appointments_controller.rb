@@ -16,11 +16,14 @@ class AppointmentsController < ApplicationController
   
   def show
     @appointment = Appointment.find_by(url_token: params[:key])
+    token = cookies[:user_token]
+    user_token = "#{request.remote_ip}-#{token}" if token
     if @appointment
-      if @appointment.user_answered(request.remote_ip)
+      if token && @appointment.user_answered(user_token)
         flash[:notice] = 'Already submitted a vote'
-        @answer = @appointment.answer_for_user(request.remote_ip)
+        @answer = @appointment.answer_for_user(user_token)
       else
+        cookies[:user_token] ||= "#{request.remote_ip}-#{rand(999_999_999)}"
         @answer = @appointment.answers.new
       end
     end

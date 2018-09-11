@@ -27,12 +27,12 @@ class AnswersController < ApplicationController
   
   def answer_params
     attrs = params.require(:answer).permit(:attempting, :user_name, :guests, :appointment_id)
-    attrs[:user_ip] = request.remote_ip
+    attrs[:user_ip] = "#{request.remote_ip}-#{cookies[:user_token]}"
 
     attrs
   end
 
   def appointment_key
-    Appointment.find(params[:answer][:appointment_id]).try(&:url_token  )
+    Appointment.find(params[:answer][:appointment_id]).try(&:url_token)
   end
 end
