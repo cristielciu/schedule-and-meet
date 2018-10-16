@@ -7,6 +7,9 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new(appointment_params)
     
     if @appointment.save
+      token = current_user.facebook_api_key
+      group_id = current_user.group_id
+      @appointment.post_on_facebook(token, group_id)
       flash[:success] = 'Appointment created'
       redirect_to root_path
     else

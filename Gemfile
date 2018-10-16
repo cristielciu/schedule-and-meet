@@ -11,6 +11,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'koala', '~> 3.0.0'
 
 group :production do
   gem 'uglifier', '~> 2.7', '>= 2.7.2'

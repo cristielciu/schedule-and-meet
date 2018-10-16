@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User::SessionsController < Devise::SessionsController
+  skip_before_action :check_logged_in
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

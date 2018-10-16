@@ -13,6 +13,11 @@ class Appointment < ApplicationRecord
     ENV["url"] + "appointment?key=#{url_token}"
   end
 
+  def post_on_facebook(token, group_id)
+    graph = Koala::Facebook::API.new(token)
+    graph.put_connections(group_id, 'feed', message: "New appointment: #{name} check it out. \n #{description} \n #{starts_at.strftime('%m/%d/%Y, %H:%M')}", link: external_url, caption: name)
+  end
+
   def user_answered(user)
     answer_for_user(user).present?
   end

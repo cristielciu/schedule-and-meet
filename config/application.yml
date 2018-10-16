@@ -1,5 +1,5 @@
 development:
-  url: 'http://localhost:3000/'
+  url: '127.0.0.1:3000/'
 
 production:
   url:  'https://schedule-and-meet.herokuapp.com/'
