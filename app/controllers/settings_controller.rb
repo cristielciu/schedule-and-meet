@@ -6,7 +6,6 @@ class SettingsController < ApplicationController
   def update
     user = current_user
     if user.update_attributes(params.require(:user).permit(:facebook_api_key, :group_id))
-      binding.pry
       flash[:success] = 'Settings updated'
       redirect_to root_path
     else
