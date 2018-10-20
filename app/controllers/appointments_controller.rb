@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+  skip_before_action :check_logged_in, only: :show
+  
   def new
     @appointment = Appointment.new
   end
