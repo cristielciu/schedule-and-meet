@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  skip_before_action :check_logged_in
+
   def create
     answer = Answer.new(answer_params)
 
